@@ -97,6 +97,7 @@
   };
 
   environment.sessionVariables.TERMINAL = [ "alacritty" ];
+  environment.homeBinInPath = true;
 
   # Adding the Nubank overlay
   nixpkgs.overlays = [
