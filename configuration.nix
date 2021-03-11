@@ -97,8 +97,6 @@
   };
 
   environment.sessionVariables.TERMINAL = [ "alacritty" ];
-  environment.sessionVariables.GTK_IM_MODULE = [ "cedilla" ];
-  environment.sessionVariables.QT_IM_MODULE = [ "cedilla" ];
 
   # Adding the Nubank overlay
   nixpkgs.overlays = [
