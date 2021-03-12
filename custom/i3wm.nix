@@ -18,7 +18,7 @@
 
       extraPackages = with pkgs; [
         dmenu
-        dust
+        dunst
         i3status
         file # Needed to make py3status work
         (python3Packages.py3status.overrideAttrs (oldAttrs: {
