@@ -133,6 +133,7 @@
     git
     gnome3.gnome-tweak-tool
     google-chrome
+    gsimplecal
     navi
     neofetch
     pavucontrol # audio/volume control
