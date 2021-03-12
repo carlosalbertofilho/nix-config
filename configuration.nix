@@ -139,9 +139,7 @@
     playerctl # to use my mediakey config from i3
     rescuetime
     ripgrep
-    rofi
-    rofi-calc
-    rofi-emoji
+    (rofi.override { plugins = [ rofi-calc rofi-emoji ]; })
     spotify
     sqlite # to use in org-roam
     tdesktop # telegram-desktop
