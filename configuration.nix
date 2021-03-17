@@ -111,6 +111,7 @@
   # $ nix search wget
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
+    libnotify # I use this lib to make dunst work with the workaround in my linux-setup
     ag
     alacritty
     aspell
