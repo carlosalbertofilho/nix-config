@@ -70,6 +70,7 @@
 
   # Enable the GNOME 3 Desktop Environment.
   services.xserver.enable = true;
+  services.xserver.videoDrivers = [ "nvidia" ];
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome3.enable = true;
 
