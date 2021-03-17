@@ -151,6 +151,10 @@
     vim
     wakatime
     wget
+    xclip
+    xsel # to be used in bwmenu
+    xdotool # to be used in bwmenu
+    keyutils # to be used in bwmenu
     zoom-us
   ]
   ++ nubank.all-tools
