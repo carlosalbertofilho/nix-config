@@ -111,7 +111,9 @@
   # $ nix search wget
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
+    lxappearance # customize themes for GTK
     libnotify # I use this lib to make dunst work with the workaround in my linux-setup
+    ntfy
     ag
     alacritty
     aspell
@@ -198,6 +200,16 @@
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
+  };
+
+  # automatic garbage collect
+  nix = {
+    gc = {
+      automatic = true;
+      dates = "3:15";
+      options = "--delete-older-than 7d";
+    };
+    autoOptimiseStore = true;
   };
 
   # List services that you want to enable:
