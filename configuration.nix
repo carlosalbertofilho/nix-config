@@ -111,10 +111,7 @@
   # $ nix search wget
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-    unzip
-    lxappearance # customize themes for GTK
-    libnotify # I use this lib to make dunst work with the workaround in my linux-setup
-    ntfy
+    (rofi.override { plugins = [ rofi-calc rofi-emoji ]; })
     ag
     alacritty
     aspell
@@ -139,25 +136,28 @@
     gnome3.gnome-tweak-tool
     google-chrome
     gsimplecal
+    keyutils # to be used in bwmenu
+    libnotify # I use this lib to make dunst work with the workaround in my linux-setup
+    lxappearance # customize themes for GTK
     navi
     neofetch
+    ntfy
     pavucontrol # audio/volume control
     playerctl # to use my mediakey config from i3
     rescuetime
     ripgrep
-    (rofi.override { plugins = [ rofi-calc rofi-emoji ]; })
     spotify
     sqlite # to use in org-roam
     tdesktop # telegram-desktop
     tldr
     tree
+    unzip
     vim
     wakatime
     wget
     xclip
-    xsel # to be used in bwmenu
     xdotool # to be used in bwmenu
-    keyutils # to be used in bwmenu
+    xsel # to be used in bwmenu
     zoom-us
   ]
   ++ nubank.all-tools
