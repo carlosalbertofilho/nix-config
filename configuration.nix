@@ -127,6 +127,7 @@
     docker-compose
     dropbox-cli
     emacs
+    espanso
     feh
     firefox
     flameshot # screenshot tool
