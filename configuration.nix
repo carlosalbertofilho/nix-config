@@ -136,6 +136,7 @@
     gimp
     git
     gnome3.gnome-tweak-tool
+    go # just to have `go get` available
     google-chrome
     gsimplecal
     keyutils # to be used in bwmenu
