@@ -145,6 +145,7 @@
     navi
     neofetch
     ntfy
+    obs-studio # streaming app - used to configure webcam 🤷
     pavucontrol # audio/volume control
     playerctl # to use my mediakey config from i3
     rescuetime
