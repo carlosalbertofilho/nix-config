@@ -174,6 +174,7 @@
       hack-font
       ibm-plex
       inconsolata
+      iosevka
       roboto
       symbola
       jetbrains-mono
