@@ -139,6 +139,7 @@
     go # just to have `go get` available
     gotop
     google-chrome
+    guvcview # to configure webcam 🤷
     gsimplecal
     keyutils # to be used in bwmenu
     libnotify # I use this lib to make dunst work with the workaround in my linux-setup
@@ -146,7 +147,6 @@
     navi
     neofetch
     ntfy
-    obs-studio # streaming app - used to configure webcam 🤷
     pavucontrol # audio/volume control
     playerctl # to use my mediakey config from i3
     rescuetime
