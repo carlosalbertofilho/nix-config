@@ -127,7 +127,7 @@
     docker
     docker-compose
     dropbox-cli
-    emacs
+    (emacs.override { withXwidgets = true; })
     espanso
     feh
     firefox
