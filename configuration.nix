@@ -119,6 +119,7 @@
     aspellDicts.en-computers
     aspellDicts.en-science
     aspellDicts.pt_BR
+    babashka
     bat
     bitwarden
     bitwarden-cli
