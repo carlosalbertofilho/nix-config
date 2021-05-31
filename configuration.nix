@@ -150,6 +150,7 @@
     ntfy
     pavucontrol # audio/volume control
     playerctl # to use my mediakey config from i3
+    python38Packages.grip
     rescuetime
     ripgrep
     spotify
@@ -157,6 +158,7 @@
     tdesktop # telegram-desktop
     tldr
     tree
+    typora # awesome markdown editor
     unzip
     vim
     wakatime
