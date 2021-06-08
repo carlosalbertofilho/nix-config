@@ -34,7 +34,7 @@
   # Bluetooth Configuration
   hardware.bluetooth.enable = true;
   # Enabling A2DP Sink
-  hardware.bluetooth.config = {
+  hardware.bluetooth.settings = {
     General = {
       Enable = "Source,Sink,Media,Socket";
     };
