@@ -153,6 +153,7 @@
     python38Packages.grip
     rescuetime
     ripgrep
+    slack
     spotify
     sqlite # to use in org-roam
     tdesktop # telegram-desktop
