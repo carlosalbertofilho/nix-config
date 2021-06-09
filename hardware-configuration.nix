@@ -27,7 +27,7 @@
     [ { device = "/dev/disk/by-uuid/f68542ec-1d9e-4e08-aac6-ff5b3d54a6b4"; }
     ];
 
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+  powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
   # high-resolution display
   hardware.video.hidpi.enable = lib.mkDefault true;
 
