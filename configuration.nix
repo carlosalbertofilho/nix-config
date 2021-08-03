@@ -128,6 +128,7 @@
     docker
     docker-compose
     dropbox-cli
+    duf # df alternative
     (emacs.override { withXwidgets = true; })
     espanso
     feh
@@ -150,7 +151,7 @@
     ntfy
     pavucontrol # audio/volume control
     playerctl # to use my mediakey config from i3
-    python38Packages.grip
+    python39Packages.grip
     rescuetime
     ripgrep
     slack
