@@ -117,8 +117,8 @@ in
   # $ nix search wget
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
+    (emacs.override { withXwidgets = true; })
     (rofi.override { plugins = [ rofi-calc rofi-emoji ]; })
-    unstable.terraform
     ag
     alacritty
     aspell
@@ -136,7 +136,6 @@ in
     docker-compose
     dropbox-cli
     duf # df alternative
-    (emacs.override { withXwidgets = true; })
     espanso
     feh
     firefox
@@ -148,10 +147,10 @@ in
     gnome3.gnome-tweak-tool
     gnumake
     go # just to have `go get` available
-    gotop
     google-chrome
-    guvcview # to configure webcam 🤷
+    gotop
     gsimplecal
+    guvcview # to configure webcam 🤷
     inotify-tools # to use Phoenix's live-reload function on Elixir projects
     keyutils # to be used in bwmenu
     libnotify # I use this lib to make dunst work with the workaround in my linux-setup
@@ -173,9 +172,10 @@ in
     tldr
     tree
     typora # awesome markdown editor
-    unzip
     unstable.elixir
     unstable.elixir_ls
+    unstable.terraform
+    unzip
     vim
     wakatime
     wget
