@@ -118,6 +118,7 @@ in
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     (rofi.override { plugins = [ rofi-calc rofi-emoji ]; })
+    unstable.terraform
     ag
     alacritty
     aspell
@@ -135,17 +136,17 @@ in
     docker-compose
     dropbox-cli
     duf # df alternative
-    elixir
-    elixir_ls
     (emacs.override { withXwidgets = true; })
     espanso
     feh
     firefox
     flameshot # screenshot tool
     fzf
+    gcc
     gimp
     git
     gnome3.gnome-tweak-tool
+    gnumake
     go # just to have `go get` available
     gotop
     google-chrome
@@ -158,6 +159,7 @@ in
     mcfly
     navi
     neofetch
+    nodejs-14_x
     ntfy
     pavucontrol # audio/volume control
     playerctl # to use my mediakey config from i3
@@ -172,6 +174,8 @@ in
     tree
     typora # awesome markdown editor
     unzip
+    unstable.elixir
+    unstable.elixir_ls
     vim
     wakatime
     wget
