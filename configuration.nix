@@ -107,11 +107,11 @@ in
   environment.homeBinInPath = true;
 
   # Adding the Nubank overlay
-  nixpkgs.overlays = [
-    (import (builtins.fetchTarball {
-      url = https://github.com/nubank/nixpkgs/archive/master.tar.gz;
-    }))
-  ];
+  # nixpkgs.overlays = [
+  #   (import (builtins.fetchTarball {
+  #     url = https://github.com/nubank/nixpkgs/archive/master.tar.gz;
+  #   }))
+  # ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -183,9 +183,9 @@ in
     xdotool # to be used in bwmenu
     xsel # to be used in bwmenu
     zoom-us
-  ]
-  ++ nubank.all-tools
-  ++ nubank.desktop-tools;
+  ];
+  # ++ nubank.all-tools
+  # ++ nubank.desktop-tools;
 
   fonts = {
     fonts = with pkgs; [
