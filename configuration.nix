@@ -170,6 +170,7 @@ in
     sqlite # to use in org-roam
     tdesktop # telegram-desktop
     tldr
+    todoist
     tree
     typora # awesome markdown editor
     unstable.elixir
