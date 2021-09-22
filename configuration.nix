@@ -161,6 +161,7 @@ in
     nodejs-14_x
     ntfy
     pavucontrol # audio/volume control
+    pgcli
     playerctl # to use my mediakey config from i3
     python39Packages.grip
     rescuetime
