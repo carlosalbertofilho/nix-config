@@ -144,6 +144,7 @@ in
     gcc
     gimp
     git
+    git-crypt
     gnome3.gnome-tweak-tool
     gnumake
     go # just to have `go get` available
@@ -151,6 +152,7 @@ in
     gotop
     gsimplecal
     guvcview # to configure webcam 🤷
+    hub
     inotify-tools # to use Phoenix's live-reload function on Elixir projects
     keyutils # to be used in bwmenu
     libnotify # I use this lib to make dunst work with the workaround in my linux-setup
