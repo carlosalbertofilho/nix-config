@@ -166,6 +166,7 @@ in
     peek
     pgcli
     playerctl # to use my mediakey config from i3
+    python39
     python39Packages.grip
     rescuetime
     ripgrep
@@ -177,6 +178,7 @@ in
     todoist
     tree
     typora # awesome markdown editor
+    unipicker
     unstable.elixir
     unstable.elixir_ls
     unstable.terraform
