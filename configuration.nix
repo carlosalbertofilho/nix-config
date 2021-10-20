@@ -74,6 +74,9 @@ in
   #   keyMap = "us";
   # };
 
+  environment.variables.ROFI_TODOIST_ROOT_PATH = [ "~/dev/code/rofi-todoist" ];
+  environment.variables.ROFI_TODOIST_NOTIFICATION = [ "notify-send" ];
+
   # Enable the GNOME 3 Desktop Environment.
   services.xserver.enable = true;
   services.xserver.videoDrivers = [ "nvidia" ];
