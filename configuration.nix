@@ -168,7 +168,7 @@ in
     ntfy
     pavucontrol # audio/volume control
     peek
-    pgcli
+    unstable.pgcli
     playerctl # to use my mediakey config from i3
     python39
     python39Packages.grip
