@@ -159,6 +159,7 @@ in
     inotify-tools # to use Phoenix's live-reload function on Elixir projects
     keyutils # to be used in bwmenu
     libnotify # I use this lib to make dunst work with the workaround in my linux-setup
+    lsd
     lxappearance # customize themes for GTK
     mcfly
     navi
@@ -199,15 +200,26 @@ in
 
   fonts = {
     fonts = with pkgs; [
+      dejavu_fonts
       emacs-all-the-icons-fonts
       hack-font
       ibm-plex
-      inconsolata
-      iosevka
+      (nerdfonts.override {
+        fonts = [
+          "Agave"
+          "FiraCode"
+          "Inconsolata"
+          "Iosevka"
+          "JetBrainsMono"
+          "LiberationMono"
+          "Overpass"
+          "SourceCodePro"
+          "Ubuntu"
+          "UbuntuMono"
+        ];
+      })
       roboto
       symbola
-      jetbrains-mono
-      dejavu_fonts
     ];
   };
 
