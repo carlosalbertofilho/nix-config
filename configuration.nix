@@ -92,6 +92,9 @@ in
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  # Setting Emacs Daemon
+  services.emacs.enable = true;
+
   # Enable sound.
   sound.enable = true;
   sound.mediaKeys.enable = true;
