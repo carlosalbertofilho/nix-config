@@ -138,6 +138,7 @@ in
     bitwarden-cli
     curl
     dmidecode # to see hardware information
+    direnv
     docker
     docker-compose
     dropbox-cli
