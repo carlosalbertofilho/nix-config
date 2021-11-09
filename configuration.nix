@@ -106,7 +106,7 @@ in
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.squiter = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "docker" ];
+    extraGroups = [ "wheel" "docker" "plugdev" ];
   };
 
   environment.sessionVariables.TERMINAL = [ "alacritty" ];
@@ -193,6 +193,7 @@ in
     unzip
     vim
     wakatime
+    wally-cli
     wget
     xclip
     xdotool # to be used in bwmenu
@@ -273,6 +274,9 @@ in
   services.blueman.enable = true;
 
   virtualisation.docker.enable = true;
+
+  # Enabling Ergodox Flashing
+  hardware.keyboard.zsa.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
