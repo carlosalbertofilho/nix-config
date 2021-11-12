@@ -199,6 +199,7 @@ in
     xclip
     xdotool # to be used in bwmenu
     xsel # to be used in bwmenu
+    zeal
     zoom-us
   ];
   # ++ nubank.all-tools
