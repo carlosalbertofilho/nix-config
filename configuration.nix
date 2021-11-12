@@ -9,6 +9,15 @@ let
     (builtins.fetchTarball https://github.com/nixos/nixpkgs/tarball/master)
     # reuse the current configuration
     { config = config.nixpkgs.config; };
+
+  rustPackages = with pkgs; [
+    latest.rustChannels.stable.cargo
+    latest.rustChannels.stable.rust
+    openssl # needed by cargo-web
+    pkgconfig # needed by cargo-web
+    rls # rust lsp
+    rust-analyzer # rust lsp
+  ];
 in
 {
   imports =
@@ -119,6 +128,10 @@ in
   #   }))
   # ];
 
+  nixpkgs.overlays = [
+    # Mozilla Rust Overlay
+    (import (builtins.fetchTarball https://github.com/mozilla/nixpkgs-mozilla/archive/master.tar.gz))
+  ];
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   nixpkgs.config.allowUnfree = true;
@@ -202,7 +215,8 @@ in
     xsel # to be used in bwmenu
     zeal
     zoom-us
-  ];
+  ]
+  ++ rustPackages;
   # ++ nubank.all-tools
   # ++ nubank.desktop-tools;
 
