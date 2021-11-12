@@ -10,6 +10,15 @@ let
     # reuse the current configuration
     { config = config.nixpkgs.config; };
 
+  emacsPackages = with pkgs; [
+    (emacs.override { withXwidgets = true; })
+    aspell
+    aspellDicts.en
+    aspellDicts.en-computers
+    aspellDicts.en-science
+    aspellDicts.pt_BR
+  ];
+
   rustPackages = with pkgs; [
     latest.rustChannels.stable.cargo
     latest.rustChannels.stable.rust
@@ -136,15 +145,9 @@ in
   # $ nix search wget
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-    (emacs.override { withXwidgets = true; })
     (rofi.override { plugins = [ rofi-calc rofi-emoji ]; })
     ag
     alacritty
-    aspell
-    aspellDicts.en
-    aspellDicts.en-computers
-    aspellDicts.en-science
-    aspellDicts.pt_BR
     awscli2
     babashka
     bat
@@ -216,7 +219,8 @@ in
     zeal
     zoom-us
   ]
-  ++ rustPackages;
+  ++ rustPackages
+  ++ emacsPackages;
   # ++ nubank.all-tools
   # ++ nubank.desktop-tools;
 
