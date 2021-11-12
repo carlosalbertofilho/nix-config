@@ -162,6 +162,7 @@ in
     guvcview # to configure webcam 🤷
     hub
     inotify-tools # to use Phoenix's live-reload function on Elixir projects
+    jq
     keyutils # to be used in bwmenu
     libnotify # I use this lib to make dunst work with the workaround in my linux-setup
     lsd
