@@ -132,6 +132,7 @@ in
     aspellDicts.en-computers
     aspellDicts.en-science
     aspellDicts.pt_BR
+    awscli2
     babashka
     bat
     bitwarden
