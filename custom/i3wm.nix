@@ -20,6 +20,7 @@
         dmenu
         dunst
         i3status
+        i3-balance-workspace
         file # Needed to make py3status work
         (python3Packages.py3status.overrideAttrs (oldAttrs: {
           propagatedBuildInputs = with python3Packages; [
