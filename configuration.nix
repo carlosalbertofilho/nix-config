@@ -181,7 +181,7 @@ in
     jq
     keyutils # to be used in bwmenu
     libnotify # I use this lib to make dunst work with the workaround in my linux-setup
-    lsd
+    lsd # ls replacement
     lxappearance # customize themes for GTK
     mcfly
     navi
