@@ -199,7 +199,7 @@ in
     slack
     spotify
     sqlite # to use in org-roam
-    tdesktop # telegram-desktop
+    unstable.tdesktop # telegram-desktop
     tldr
     todoist
     tree
