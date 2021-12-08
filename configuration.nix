@@ -27,6 +27,11 @@ let
     rls # rust lsp
     rust-analyzer # rust lsp
   ];
+
+  postgresPackages = with pkgs; [
+    dbeaver
+    unstable.pgcli
+  ];
 in
 {
   imports =
@@ -190,7 +195,6 @@ in
     ntfy
     pavucontrol # audio/volume control
     peek
-    unstable.pgcli
     playerctl # to use my mediakey config from i3
     python39
     python39Packages.grip
@@ -219,6 +223,7 @@ in
     zeal
     zoom-us
   ]
+  ++ postgresPackages
   ++ rustPackages
   ++ emacsPackages;
   # ++ nubank.all-tools
