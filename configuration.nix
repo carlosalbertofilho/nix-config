@@ -194,7 +194,7 @@ in
     nodejs-14_x
     ntfy
     pavucontrol # audio/volume control
-    peek
+    peek # screen recording
     playerctl # to use my mediakey config from i3
     python39
     python39Packages.grip
