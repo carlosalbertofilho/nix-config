@@ -32,6 +32,12 @@ let
     dbeaver
     unstable.pgcli
   ];
+
+  elixirPackages = with pkgs; [
+    inotify-tools # to use Phoenix's live-reload function on Elixir projects
+    unstable.elixir_1_12
+    unstable.elixir_ls
+  ];
 in
 {
   imports =
@@ -182,7 +188,6 @@ in
     gsimplecal
     guvcview # to configure webcam 🤷
     hub
-    inotify-tools # to use Phoenix's live-reload function on Elixir projects
     jq
     keyutils # to be used in bwmenu
     libnotify # I use this lib to make dunst work with the workaround in my linux-setup
@@ -209,8 +214,6 @@ in
     tree
     typora # awesome markdown editor
     unipicker
-    unstable.elixir
-    unstable.elixir_ls
     unstable.terraform
     unzip
     vim
@@ -225,6 +228,7 @@ in
   ]
   ++ postgresPackages
   ++ rustPackages
+  ++ elixirPackages
   ++ emacsPackages;
   # ++ nubank.all-tools
   # ++ nubank.desktop-tools;
