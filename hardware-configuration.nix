@@ -30,21 +30,4 @@
   powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
   # high-resolution display
   hardware.video.hidpi.enable = lib.mkDefault true;
-
-  # Bluetooth Configuration
-  hardware.bluetooth.enable = true;
-  # Enabling A2DP Sink
-  hardware.bluetooth.settings = {
-    General = {
-      Enable = "Source,Sink,Media,Socket";
-    };
-  };
-  # Better pulseaudio
-  hardware.pulseaudio = {
-    enable = true;
-
-    # NixOS allows either a lightweight build (default) or full build of PulseAudio to be installed.
-    # Only the full build has Bluetooth support, so it must be selected here.
-    package = pkgs.pulseaudioFull;
-  };
 }

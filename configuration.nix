@@ -127,7 +127,25 @@ in
   # Enable sound.
   sound.enable = true;
   sound.mediaKeys.enable = true;
-  hardware.pulseaudio.enable = true;
+
+  # Bluetooth Configuration
+  hardware.bluetooth.enable = true;
+
+  # Enabling A2DP Sink
+  hardware.bluetooth.settings = {
+    General = {
+      Enable = "Source,Sink,Media,Socket";
+    };
+  };
+
+  # Better pulseaudio
+  hardware.pulseaudio = {
+    enable = true;
+
+    # NixOS allows either a lightweight build (default) or full build of PulseAudio to be installed.
+    # Only the full build has Bluetooth support, so it must be selected here.
+    package = pkgs.pulseaudioFull;
+  };
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -151,10 +169,23 @@ in
   nixpkgs.overlays = [
     # Mozilla Rust Overlay
     (import (builtins.fetchTarball https://github.com/mozilla/nixpkgs-mozilla/archive/master.tar.gz))
+    # MPV Config
+    (self: super: {
+      mpv = super.mpv-with-scripts.override {
+        scripts = [ self.mpvScripts.mpris ];
+      };
+    })
   ];
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    permittedInsecurePackages = [
+      "electron-9.4.4" # this packages reaches
+    ];
+  };
+
   environment.systemPackages = with pkgs; [
     (rofi.override { plugins = [ rofi-calc rofi-emoji ]; })
     ag
@@ -194,6 +225,7 @@ in
     lsd # ls replacement
     lxappearance # customize themes for GTK
     mcfly
+    mpv
     navi
     neofetch
     nodejs-14_x
@@ -220,6 +252,7 @@ in
     wakatime
     wally-cli
     wget
+    unstable.youtube-dl
     xclip
     xdotool # to be used in bwmenu
     xsel # to be used in bwmenu
