@@ -322,7 +322,7 @@ in
   nix = {
     gc = {
       automatic = true;
-      dates = "3:15";
+      dates = "weekly";
       options = "--delete-older-than 7d";
     };
     autoOptimiseStore = true;
