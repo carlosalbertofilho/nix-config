@@ -95,6 +95,19 @@ in
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
+  programs = {
+    # Enable NetworkManager applet.
+    nm-applet.enable = true;
+  };
+
+  # Make nm-applet restart in case of failure
+  systemd.user.services.nm-applet = {
+    serviceConfig = {
+      RestartSec = 3;
+      Restart = "on-failure";
+    };
+  };
+
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
   environment.variables.LC_CTYPE = [ "pt_BR.UTF-8" ]; # to fix the ć in int keyboards
@@ -153,7 +166,7 @@ in
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.squiter = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "docker" "plugdev" ];
+    extraGroups = [ "wheel" "docker" "networkmanager" "plugdev" ];
   };
 
   environment.sessionVariables.TERMINAL = [ "alacritty" ];
