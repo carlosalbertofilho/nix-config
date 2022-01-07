@@ -35,7 +35,7 @@ let
 
   elixirPackages = with pkgs; [
     inotify-tools # to use Phoenix's live-reload function on Elixir projects
-    unstable.elixir_1_12
+    unstable.elixir_1_13
     unstable.elixir_ls
   ];
 in
