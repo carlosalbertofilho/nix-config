@@ -38,6 +38,10 @@ let
     unstable.elixir_1_13
     unstable.elixir_ls
   ];
+
+  games = with pkgs; [
+    dwarf-fortress
+  ];
 in
 {
   imports =
@@ -135,7 +139,7 @@ in
   services.printing.enable = true;
 
   # Setting Emacs Daemon
-  services.emacs.enable = true;
+  # services.emacs.enable = true;
 
   # Enable sound.
   sound.enable = true;
@@ -275,7 +279,8 @@ in
   ++ postgresPackages
   ++ rustPackages
   ++ elixirPackages
-  ++ emacsPackages;
+  ++ emacsPackages
+  ++ games;
   # ++ nubank.all-tools
   # ++ nubank.desktop-tools;
 
