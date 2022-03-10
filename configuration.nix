@@ -245,7 +245,7 @@ in
     mpv
     navi
     neofetch
-    nodejs-14_x
+    nodejs-16_x
     ntfy
     pavucontrol # audio/volume control
     peek # screen recording
