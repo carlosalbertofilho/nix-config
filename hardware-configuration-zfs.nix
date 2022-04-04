@@ -9,57 +9,57 @@
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "ehci_pci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
-  boot.initrd.kernelModules = ["amdgpu"];
+  boot.initrd.kernelModules = ["amdgpu" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "rpool_7x4y9y/nixos/ROOT/default";
+    { device = "rpool_1mx1x0/nixos/ROOT/default";
       fsType = "zfs"; options = [ "zfsutil" "X-mount.mkdir" ];
     };
 
   fileSystems."/boot" =
-    { device = "bpool_7x4y9y/nixos/BOOT/default";
+    { device = "bpool_1mx1x0/nixos/BOOT/default";
       fsType = "zfs"; options = [ "zfsutil" "X-mount.mkdir" ];
     };
 
   fileSystems."/home" =
-    { device = "rpool_7x4y9y/nixos/DATA/default/home";
+    { device = "rpool_1mx1x0/nixos/DATA/default/home";
       fsType = "zfs"; options = [ "zfsutil" "X-mount.mkdir" ];
     };
 
   fileSystems."/root" =
-    { device = "rpool_7x4y9y/nixos/DATA/default/root";
+    { device = "rpool_1mx1x0/nixos/DATA/default/root";
       fsType = "zfs"; options = [ "zfsutil" "X-mount.mkdir" ];
     };
 
   fileSystems."/srv" =
-    { device = "rpool_7x4y9y/nixos/DATA/default/srv";
+    { device = "rpool_1mx1x0/nixos/DATA/default/srv";
       fsType = "zfs"; options = [ "zfsutil" "X-mount.mkdir" ];
     };
 
   fileSystems."/usr/local" =
-    { device = "rpool_7x4y9y/nixos/DATA/default/usr/local";
+    { device = "rpool_1mx1x0/nixos/DATA/default/usr/local";
       fsType = "zfs"; options = [ "zfsutil" "X-mount.mkdir" ];
     };
 
   fileSystems."/var/log" =
-    { device = "rpool_7x4y9y/nixos/DATA/default/var/log";
+    { device = "rpool_1mx1x0/nixos/DATA/default/var/log";
       fsType = "zfs"; options = [ "zfsutil" "X-mount.mkdir" ];
     };
 
   fileSystems."/var/spool" =
-    { device = "rpool_7x4y9y/nixos/DATA/default/var/spool";
+    { device = "rpool_1mx1x0/nixos/DATA/default/var/spool";
       fsType = "zfs"; options = [ "zfsutil" "X-mount.mkdir" ];
     };
 
   fileSystems."/nix" =
-    { device = "rpool_7x4y9y/nixos/DATA/local/nix";
+    { device = "rpool_1mx1x0/nixos/DATA/local/nix";
       fsType = "zfs"; options = [ "zfsutil" "X-mount.mkdir" ];
     };
 
   fileSystems."/state" =
-    { device = "rpool_7x4y9y/nixos/DATA/default/state";
+    { device = "rpool_1mx1x0/nixos/DATA/default/state";
       fsType = "zfs"; options = [ "zfsutil" "X-mount.mkdir" ];
     };
 
@@ -75,42 +75,46 @@
       options = [ "bind" ];
     };
 
+  fileSystems."/boot/efis/nvme-Force_MP510_21028236000128865E98-part1" =
+    { device = "/dev/disk/by-uuid/03B3-B62C";
+      fsType = "vfat"; options = [ "x-systemd.idle-timeout=1min" "x-systemd.automount" "noauto" ];
+    };
+
   fileSystems."/var/games" =
-    { device = "rpool_7x4y9y/nixos/DATA/default/var/games";
+    { device = "rpool_1mx1x0/nixos/DATA/default/var/games";
       fsType = "zfs"; options = [ "zfsutil" "X-mount.mkdir" ];
     };
 
   fileSystems."/var/www" =
-    { device = "rpool_7x4y9y/nixos/DATA/default/var/www";
+    { device = "rpool_1mx1x0/nixos/DATA/default/var/www";
       fsType = "zfs"; options = [ "zfsutil" "X-mount.mkdir" ];
     };
 
   fileSystems."/var/lib/AccountsService" =
-    { device = "rpool_7x4y9y/nixos/DATA/default/var/lib/AccountsService";
+    { device = "rpool_1mx1x0/nixos/DATA/default/var/lib/AccountsService";
       fsType = "zfs"; options = [ "zfsutil" "X-mount.mkdir" ];
     };
 
   fileSystems."/var/lib/docker" =
-    { device = "rpool_7x4y9y/nixos/DATA/default/var/lib/docker";
+    { device = "rpool_1mx1x0/nixos/DATA/default/var/lib/docker";
       fsType = "zfs"; options = [ "zfsutil" "X-mount.mkdir" ];
     };
 
   fileSystems."/var/lib/nfs" =
-    { device = "rpool_7x4y9y/nixos/DATA/default/var/lib/nfs";
+    { device = "rpool_1mx1x0/nixos/DATA/default/var/lib/nfs";
       fsType = "zfs"; options = [ "zfsutil" "X-mount.mkdir" ];
     };
 
   fileSystems."/var/lib/lxc" =
-    { device = "rpool_7x4y9y/nixos/DATA/default/var/lib/lxc";
+    { device = "rpool_1mx1x0/nixos/DATA/default/var/lib/lxc";
       fsType = "zfs"; options = [ "zfsutil" "X-mount.mkdir" ];
     };
 
   fileSystems."/var/lib/libvirt" =
-    { device = "rpool_7x4y9y/nixos/DATA/default/var/lib/libvirt";
+    { device = "rpool_1mx1x0/nixos/DATA/default/var/lib/libvirt";
       fsType = "zfs"; options = [ "zfsutil" "X-mount.mkdir" ];
     };
 
-  swapDevices = [ ];
 
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

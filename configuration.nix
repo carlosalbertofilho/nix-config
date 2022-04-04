@@ -14,8 +14,12 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "gaia.local"; # Define your hostname.
-  networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  # Allow Unfree Pkgs
+  nixpkgs.config.allowUnfree = true;
+
+  networking.hostName = "gaia"; # Define your hostname.
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.networkmanager.enable = true;
 
   # Set your time zone.
   time.timeZone = "America/Sao_Paulo";
@@ -37,6 +41,7 @@
      keyMap = "br-abnt2";
   };
 
+
   
   # Configure X11
   services.xserver = {
@@ -48,16 +53,16 @@
     	desktopManager.xfce.enable = true;
     	displayManager.lightdm.enable = true;
     	windowManager.stumpwm.enable = true;
-    	windowManager.default = "stumpwm";
+	displayManager.defaultSession = "none+stumpwm";
 
     	# Configure keymap in X11
     	layout = "br";
     	xkbOptions = "eurosign:e";
-  }
+  };
 
   # Configure fonts
   fonts = {
-        enableFontDir = true;
+	fontDir.enable = true;
     	enableGhostscriptFonts = true;
     	fonts = with pkgs; [
       		inconsolata
@@ -78,13 +83,6 @@
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
 
-  # OpenCL 
-  # install the clinfo package to verify that OpenCL is correctly setup 
-  hardware.opengl.extraPackages = with pkgs; [
-   	rocm-opencl-icd
-   	rocm-opencl-runtime
-  ];
-
   hardware = {
 	 # Enable sound.
 	 pulseaudio.enable = true;
@@ -93,16 +91,12 @@
 	 bluetooth.enable = true;
 
 	 # Allow hardware accelerated drivers
-	 hardware.opengl.driSupport = true;
+	 opengl.driSupport = true;
 	 # Allow hardware accelerated drivers to run in 31-bit mode
 	 opengl.driSupport32Bit = true;
-  }
+  };
 
-  # Not exactly sure what this accomplishes, from wiki advice...
-  security.setuidPrograms = [
-  	"xlaunch"
-  ];
-
+  
   # Define a user account. Don't forget to set a password with ‘passwd’.
    users.users.carlosfilho = {
      	isNormalUser = true;
@@ -117,23 +111,22 @@
   # $ nix search wget
    environment.systemPackages = with pkgs; [
      emacs # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-     
+     alacritty
+     neovim
+     gitFull
      wget
     
+     jdk11
     # Window Management
     stumpwm
     compton
-    xlaunch
     #bumblebee # https://github.com/NixOS/nixpkgs/blob/master/pkgs/tools/X11/bumblebee/default.nix
 
     # Audio / Media Players
     smplayer
     vlc
     mpd
-    ardour
-    supercollider
     ncmpcpp
-    qjackctl
     pavucontrol
 
     # Games
@@ -142,21 +135,17 @@
     # Web
     google-chrome
     firefox
+    thunderbird
     nyxt
     qutebrowser
 
     # Photos and Graphics
     xfce.ristretto   # Doesn't come with PNG support.  Fix it?  Use something else instead?
-    darktable
     gimp
     inkscape
-    processing
 
     # Video
-    #makemkv # NOTE: Didn't build...
-    #cinelerra # NOTE: Package points to outdate Git repo url, doesn't build
     mpv
-    handbrake
     zoom-us
 
     # Desktop Tools
@@ -165,24 +154,18 @@
     xfce.xfce4_power_manager
     xfce.xfce4terminal
     spideroak
-    #smbclient # Not found, find correct package
     blueman 
     scrot
     p7zip
     gnupg
     filezilla
     fbpanel
+    libreoffice-qt
 
     # Chats
     discord
     tdesktop
-
-    # Haskell packages
-    (haskellPackages.ghcWithPackages (self : [
-      haskellPlatform
-      self.taffybar
-      self.gitAnnex
-     ])) 
+    
    ];
 
   # Some programs need SUID wrappers, can be configured further or are
