@@ -213,8 +213,9 @@ in
     bitwarden
     bitwarden-cli
     curl
-    dmidecode # to see hardware information
+    delta # better git diffs
     direnv
+    dmidecode # to see hardware information
     docker
     docker-compose
     dropbox-cli
