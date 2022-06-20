@@ -214,6 +214,7 @@ in
     bitwarden-cli
     curl
     delta # better git diffs
+    unstable.discord
     direnv
     dmidecode # to see hardware information
     docker
