@@ -1,46 +1,35 @@
 { config, pkgs, ... }:
 
 { boot.supportedFilesystems = [ "zfs" ];
-  networking.hostId = "975dce5e";
-  boot.zfs.devNodes = "/dev/disk/by-id";
+  networking.hostId = "ffc02d75";
   boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
-  swapDevices = [
-    { device = "/dev/disk/by-id/nvme-Force_MP510_21028236000128865E98-part4"; randomEncryption.enable = true; }
-  ];
-  systemd.services.zfs-mount.enable = false;
-  environment.etc."machine-id".source = "/state/etc/machine-id";
-  environment.etc."zfs/zpool.cache".source
-    = "/state/etc/zfs/zpool.cache";
-  boot.loader.efi.efiSysMountPoint = "/boot/efis/nvme-Force_MP510_21028236000128865E98-part1";
-  ##if UEFI firmware can detect entries
-  boot.loader.efi.canTouchEfiVariables = true;
+boot.loader.efi.efiSysMountPoint = "/boot/efi";
+boot.loader.efi.canTouchEfiVariables = false;
+boot.loader.generationsDir.copyKernels = true;
+boot.loader.grub.efiInstallAsRemovable = true;
+boot.loader.grub.enable = true;
+boot.loader.grub.version = 2;
+boot.loader.grub.copyKernels = true;
+boot.loader.grub.efiSupport = true;
+boot.loader.grub.zfsSupport = true;
+boot.loader.grub.extraPrepareConfig = ''
+  mkdir -p /boot/efis
+  for i in  /boot/efis/*; do mount $i ; done
 
-  boot.loader = {
-    generationsDir.copyKernels = true;
-    ##for problematic UEFI firmware
-    grub.efiInstallAsRemovable = false;
-    grub.enable = true;
-    grub.version = 2;
-    grub.copyKernels = true;
-    grub.efiSupport = true;
-    grub.zfsSupport = true;
-    # for systemd-autofs
-    grub.extraPrepareConfig = ''
-      mkdir -p /boot/efis /boot/efi
-      for i in  /boot/efis/*; do mount $i ; done
-      mount /boot/efi
-    '';
-    grub.extraInstallCommands = ''
-       export ESP_MIRROR=$(mktemp -d -p /tmp)
-       cp -r /boot/efis/nvme-Force_MP510_21028236000128865E98-part1/EFI $ESP_MIRROR
-       for i in /boot/efis/*; do
-        cp -r $ESP_MIRROR/EFI $i
-       done
-       rm -rf $ESP_MIRROR
-    '';
-    grub.devices = [
-      "/dev/disk/by-id/nvme-Force_MP510_21028236000128865E98"
+  mkdir -p /boot/efi
+  mount /boot/efi
+'';
+boot.loader.grub.extraInstallCommands = ''
+ESP_MIRROR=$(mktemp -d)
+cp -r /boot/efi/EFI $ESP_MIRROR
+for i in /boot/efis/*; do
+ cp -r $ESP_MIRROR/EFI $i
+done
+rm -rf $ESP_MIRROR
+'';
+boot.loader.grub.devices = [
+      "/dev/disk/by-id/ata-KINGSTON_SA400S37240G_50026B7784007F5A"
+      # "/dev/disk/by-uuid/343094119238794045"
     ];
-  };
-  users.users.root.initialHashedPassword = "$6$4gHdAgY24SV9byBO$JSEik0y0PB6h5n2EGYVlp/SJEPnrzllShzvdsrVWaQX/l1nH4YLAXFkHFl2LLLPk2jFzjODsz9V55SFlH0OSS1";
+users.users.root.initialHashedPassword = "$6$p2Cl6ZQbB9sCBWKi$FbnPSUMzf8YRY5G2JJBvCjJvf0YWH8vs3lRxeQy2cw2d85Ur6tyqtwPEWxvgbBMEk8/gr75mNAFdTuTEfQUK4.";
 }
