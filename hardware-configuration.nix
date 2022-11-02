@@ -16,7 +16,6 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
   boot.kernelParams = [
-    "nohibernate"
     "acpi_enforce_resources=no"
     # https://help.ubuntu.com/community/AppleKeyboard
     # https://wiki.archlinux.org/index.php/Apple_Keyboard
@@ -41,9 +40,11 @@
 
 
   fileSystems."/" =
-    { device = "rpool/nixos/root";
-      fsType = "zfs"; options = [ "zfsutil" "X-mount.mkdir" ];
-    };
+    { device = "rpool/nixos/root";  fsType = "zfs"; options = [ "zfsutil" "X-mount.mkdir" ];  };
+
+#  fileSystems."/" =
+#    { device = "/dev/disk/by-uuid/343094119238794045"; fsType = "zfs"; options = [ "zfsutil" "X-mount.mkdir" ]; };
+
 
   fileSystems."/home" =
     { device = "rpool/nixos/home";
@@ -113,7 +114,7 @@
     };
 
   swapDevices = [
-	{ device="/dev/zvol/rpool/swap"; }
+	{ device="/dev/disk/by-uuid/cf827f70-cfb1-4d26-aceb-34f721dd557d"; }
  ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
