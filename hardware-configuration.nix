@@ -40,46 +40,60 @@
 
 
   fileSystems."/" =
-    { device = "rpool/nixos/root";  fsType = "zfs"; options = [ "zfsutil" "X-mount.mkdir" ];  };
-
-#  fileSystems."/" =
-#    { device = "/dev/disk/by-uuid/343094119238794045"; fsType = "zfs"; options = [ "zfsutil" "X-mount.mkdir" ]; };
-
+    {
+      device = "rpool/nixos/root";
+      fsType = "zfs";
+      options = [ "zfsutil" "X-mount.mkdir" ];
+    };
 
   fileSystems."/home" =
-    { device = "rpool/nixos/home";
-      fsType = "zfs"; options = [ "zfsutil" "X-mount.mkdir" ];
+    {
+      device = "rpool/nixos/home";
+      fsType = "zfs";
+      options = [ "zfsutil" "X-mount.mkdir" ];
     };
 
   fileSystems."/home/carlosfilho" =
-    { device = "rpool/nixos/carlosfilho";
-      fsType = "zfs"; options = [ "zfsutil" "X-mount.mkdir" ];
+    {
+      device = "rpool/nixos/carlosfilho";
+      fsType = "zfs";
+      options = [ "zfsutil" "X-mount.mkdir" ];
     };
 
 
   fileSystems."/home/carlosfilho/Documentos" =
-    { device = "rpool/nixos/carlosfilho/Documentos";
-      fsType = "zfs"; options = [ "zfsutil" "X-mount.mkdir" ];
+    {
+      device = "rpool/nixos/carlosfilho/Documentos";
+      fsType = "zfs";
+      options = [ "zfsutil" "X-mount.mkdir" ];
     };
 
   fileSystems."/home/carlosfilho/ISOs" =
-    { device = "rpool/nixos/carlosfilho/ISOs";
-      fsType = "zfs"; options = [ "zfsutil" "X-mount.mkdir" ];
+    {
+      device = "rpool/nixos/carlosfilho/ISOs";
+      fsType = "zfs";
+      options = [ "zfsutil" "X-mount.mkdir" ];
     };
 
   fileSystems."/home/carlosfilho/Imagens" =
-    { device = "rpool/nixos/carlosfilho/Imagens";
-      fsType = "zfs"; options = [ "zfsutil" "X-mount.mkdir" ];
+    {
+      device = "rpool/nixos/carlosfilho/Imagens";
+      fsType = "zfs";
+      options = [ "zfsutil" "X-mount.mkdir" ];
     };
 
   fileSystems."/home/carlosfilho/Livros" =
-    { device = "rpool/nixos/carlosfilho/Livros";
-      fsType = "zfs"; options = [ "zfsutil" "X-mount.mkdir" ];
+    {
+      device = "rpool/nixos/carlosfilho/Livros";
+      fsType = "zfs";
+      options = [ "zfsutil" "X-mount.mkdir" ];
     };
 
   fileSystems."/home/carlosfilho/Music" =
-    { device = "rpool/nixos/carlosfilho/Music ";
-      fsType = "zfs"; options = [ "zfsutil" "X-mount.mkdir" ];
+    {
+      device = "rpool/nixos/carlosfilho/Music ";
+      fsType = "zfs";
+      options = [ "zfsutil" "X-mount.mkdir" ];
     }; 
 
   fileSystems."/home/carlosfilho/Projetos" =

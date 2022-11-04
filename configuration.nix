@@ -7,7 +7,7 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix ./zfs.nix
+      ./hardware-configuration.nix ./zfs.nix ./fonts.nix ./flakeModule.nix
     ];
 
 
@@ -58,16 +58,15 @@
    users.users.carlosfilho = {
      isNormalUser = true;
      extraGroups = [ 
-	"wheel" # Enable ‘sudo’ for the user.
-	"docker"
-        "networkmanager"
-        "messagebus"
-        "systemd-journal"
-        "disk"
-        "audio"
-        "video"
-	"lp"
-     ]; 
+      "wheel" # Enable ‘sudo’ for the user.
+      "docker"
+      "networkmanager"
+      "messagebus"
+      "systemd-journal"
+      "disk"
+      "audio"
+      "video"
+      "lp"     ];
      initialHashedPassword="$6$PbUsXPlzoG6oTxog$Upo8xLhjHjg3MKn1xPe6Byvk9o1H9afF5nt8booMCvVFy2KI5OPYjV6YvmSJDUE2LQgUiTJ6HEWY7GKzmrFJj.";
      packages = with pkgs; [
        firefox
@@ -90,6 +89,15 @@
      latte-dock 
      spotify
      libreoffice-qt
+     libsForQt5.akonadi
+     libsForQt5.akonadi-notes
+     libsForQt5.akonadi-mime
+     libsForQt5.akonadi-search
+     libsForQt5.akonadi-contacts
+     libsForQt5.akonadi-calendar
+     libsForQt5.akonadi-import-wizard
+     libsForQt5.akonadiconsole
+     libsForQt5.korganizer
      libsForQt5.kdenlive
      libsForQt5.ksshaskpass
      libsForQt5.sddm-kcm
@@ -115,10 +123,20 @@
      enableSSHSupport = true;
    };
 
+  # LAN discovery.
+  services.avahi = {
+    enable = true;
+    nssmdns = true;
+  };
+
   # List services that you want to enable:
 
   # Syslog-ng enable
   services.syslog-ng.enable = true;
+
+  # Bluetooth.
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
 
   # Locate Server
   services.locate.enable = true;
