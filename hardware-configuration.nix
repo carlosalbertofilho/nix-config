@@ -10,126 +10,41 @@
 
   boot.initrd.availableKernelModules = [ "uhci_hcd" "ehci_pci" "ahci" "firewire_ohci" "usbhid" "usb_storage" "sd_mod" "sdhci_pci" ];
   boot.initrd.kernelModules = [ ];
-  boot.blacklistedKernelModules = [ "nouveau" "nvidia" ];  # bbswitch
-  boot.plymouth.enable = true;
-  boot.plymouth.theme="breeze";
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
-  boot.kernelParams = [
-    "acpi_enforce_resources=no"
-    # https://help.ubuntu.com/community/AppleKeyboard
-    # https://wiki.archlinux.org/index.php/Apple_Keyboard
-    "hid_apple.fnmode=1"
-    "hid_apple.iso_layout=0"
-    "hid_apple.swap_opt_cmd=1"
-    "i915.enable_fbc=1"
-    "quiet"
-  ];
-  
-  # DRI Drive Config
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    extraPackages = with pkgs; [
-      intel-media-driver # LIBVA_DRIVER_NAME=iHD
-      vaapiIntel         # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
-      vaapiVdpau
-      libvdpau-va-gl
-    ];
-  };
-
+  boot.kernelModules = [ "kvm-intel" "wl" ];
+  boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
 
   fileSystems."/" =
-    {
-      device = "rpool/nixos/root";
-      fsType = "zfs";
-      options = [ "zfsutil" "X-mount.mkdir" ];
-    };
-
-  fileSystems."/home" =
-    {
-      device = "rpool/nixos/home";
-      fsType = "zfs";
-      options = [ "zfsutil" "X-mount.mkdir" ];
-    };
-
-  fileSystems."/home/carlosfilho" =
-    {
-      device = "rpool/nixos/carlosfilho";
-      fsType = "zfs";
-      options = [ "zfsutil" "X-mount.mkdir" ];
-    };
-
-
-  fileSystems."/home/carlosfilho/Documentos" =
-    {
-      device = "rpool/nixos/carlosfilho/Documentos";
-      fsType = "zfs";
-      options = [ "zfsutil" "X-mount.mkdir" ];
-    };
-
-  fileSystems."/home/carlosfilho/ISOs" =
-    {
-      device = "rpool/nixos/carlosfilho/ISOs";
-      fsType = "zfs";
-      options = [ "zfsutil" "X-mount.mkdir" ];
-    };
-
-  fileSystems."/home/carlosfilho/Imagens" =
-    {
-      device = "rpool/nixos/carlosfilho/Imagens";
-      fsType = "zfs";
-      options = [ "zfsutil" "X-mount.mkdir" ];
-    };
-
-  fileSystems."/home/carlosfilho/Livros" =
-    {
-      device = "rpool/nixos/carlosfilho/Livros";
-      fsType = "zfs";
-      options = [ "zfsutil" "X-mount.mkdir" ];
-    };
-
-  fileSystems."/home/carlosfilho/Music" =
-    {
-      device = "rpool/nixos/carlosfilho/Music ";
-      fsType = "zfs";
-      options = [ "zfsutil" "X-mount.mkdir" ];
-    }; 
-
-  fileSystems."/home/carlosfilho/Projetos" =
-    { device = "rpool/nixos/carlosfilho/src ";
-      fsType = "zfs"; options = [ "zfsutil" "X-mount.mkdir" ];
-    }; 
- 
-  fileSystems."/var/lib" =
-    { device = "rpool/nixos/var/lib";
-      fsType = "zfs"; options = [ "zfsutil" "X-mount.mkdir" ];
-    };
-
-  fileSystems."/var/log" =
-    { device = "rpool/nixos/var/log";
-      fsType = "zfs"; options = [ "zfsutil" "X-mount.mkdir" ];
+    { device = "/dev/disk/by-uuid/4a6cab96-7eff-4326-8d71-02bccb54fb11";
+      fsType = "btrfs";
+      options = [ "subvol=@" "compress=lzo" "noatime" ];
     };
 
   fileSystems."/boot" =
-    { device = "bpool/nixos/root";
-      fsType = "zfs"; options = [ "zfsutil" "X-mount.mkdir" ];
-    };
-
-  fileSystems."/boot/efis/ata-KINGSTON_SA400S37240G_50026B7784007F5A-part1" =
-    { device = "/dev/disk/by-uuid/E7E9-DF92";
+    { device = "/dev/disk/by-uuid/BD88-E40C";
       fsType = "vfat";
     };
 
-  fileSystems."/boot/efi" =
-    { device = "/boot/efis/ata-KINGSTON_SA400S37240G_50026B7784007F5A-part1";
-      fsType = "none";
-      options = [ "bind" ];
+  fileSystems."/home" =
+    { device = "/dev/disk/by-uuid/4a6cab96-7eff-4326-8d71-02bccb54fb11";
+      fsType = "btrfs";
+      options = [ "subvol=@home" "compress=lzo" "noatime" ];
     };
 
-  swapDevices = [
-	{ device="/dev/disk/by-uuid/cf827f70-cfb1-4d26-aceb-34f721dd557d"; }
- ];
+  fileSystems."/nix" =
+    { device = "/dev/disk/by-uuid/4a6cab96-7eff-4326-8d71-02bccb54fb11";
+      fsType = "btrfs";
+      options = [ "subvol=@nix" "compress=lzo" "noatime" ];
+    };
+
+  fileSystems."/home/carlosfilho" =
+    { device = "/dev/disk/by-uuid/4a6cab96-7eff-4326-8d71-02bccb54fb11";
+      fsType = "btrfs";
+      options = [ "subvol=@carlosfilho" "compress=lzo" "noatime" ];
+    };
+
+  swapDevices =
+    [ { device = "/dev/disk/by-uuid/9fcd5c51-4026-4fe7-aaf4-497f1206b67f"; }
+    ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
@@ -138,5 +53,6 @@
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp2s0f0.useDHCP = lib.mkDefault true;
 
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

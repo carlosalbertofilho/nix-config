@@ -7,7 +7,8 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix ./zfs.nix ./fonts.nix ./flakeModule.nix
+      ./grub.nix ./hardware-configuration.nix ./fonts.nix
+      ./flakeModule.nix ./homeManager.nix
     ];
 
 
@@ -44,6 +45,14 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  services.printing.drivers = [ pkgs.hplip ];
+  
+  #Scanner
+  hardware.sane.enable = true;
+  hardware.sane.extraBackends = [ pkgs.hplipWithPlugin ];
+
+  #GVFS
+  services.gvfs.enable = true;
 
   # Enable sound.
   sound.enable = true;
@@ -52,36 +61,18 @@
 
   # Enable unfree packages
   nixpkgs.config.allowUnfree = true; 
-
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-   users.users.carlosfilho = {
+  
+  users.users.carlosfilho = {
      isNormalUser = true;
      extraGroups = [ 
-      "wheel" # Enable ‘sudo’ for the user.
-      "docker"
-      "networkmanager"
-      "messagebus"
-      "systemd-journal"
-      "disk"
-      "audio"
-      "video"
-      "lp"     ];
-     initialHashedPassword="$6$PbUsXPlzoG6oTxog$Upo8xLhjHjg3MKn1xPe6Byvk9o1H9afF5nt8booMCvVFy2KI5OPYjV6YvmSJDUE2LQgUiTJ6HEWY7GKzmrFJj.";
-     packages = with pkgs; [
-       firefox
-       thunderbird
-       keepassxc
-       neofetch
-       zoom-us
-       discord
-     ];
+      "wheel" "docker" "networkmanager" "messagebus"
+      "systemd-journal" "disk" "audio" "video" "lp"  ];
    };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
    environment.systemPackages = with pkgs; [
-     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+     vim 
      wget
      google-chrome
      tdesktop
@@ -101,10 +92,16 @@
      libsForQt5.kdenlive
      libsForQt5.ksshaskpass
      libsForQt5.sddm-kcm
+     libsForQt5.kconfig
+     libsForQt5.kconfigwidgets
+     libsForQt5.dolphin-plugins
+     libsForQt5.kdeplasma-addons
+     libsForQt5.print-manager
+     kwalletcli
      ffmpeg
      gimp
      wget
-     zip unzip
+     zip unzip ark
      ripgrep-all
      archivemount
      glxinfo
@@ -112,16 +109,28 @@
      hplip
      gitFull
      neovim
+     emacs
+     pass
+     qtpass
+     gnupg
+     kgpg
+     pinentry-qt
+     pass-git-helper
     ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
-   programs.dconf.enable = true;
-   programs.mtr.enable = true;
-   programs.gnupg.agent = {
+  programs.dconf.enable = true;
+
+  programs.mtr.enable = true;
+
+  programs.gnupg.agent = {
      enable = true;
      enableSSHSupport = true;
+     pinentryFlavor = "qt";
    };
+
+  programs.ssh.askPassword = "/run/current-system/sw/bin/ksshaskpass";
 
   # LAN discovery.
   services.avahi = {
@@ -133,6 +142,11 @@
 
   # Syslog-ng enable
   services.syslog-ng.enable = true;
+
+  # Enable zsh for all user
+  programs.zsh.enable = true;
+  users.defaultUserShell = pkgs.zsh;
+  environment.shells = with pkgs; [ zsh ];
 
   # Bluetooth.
   hardware.bluetooth.enable = true;
@@ -147,6 +161,12 @@
   # Docker
   virtualisation.docker.enable = true;
   virtualisation.docker.enableOnBoot = true;
+
+  # Config kwallet
+  security.pam.services.kwallet = {
+    name = "kwallet";
+    enableKwallet = true;
+  };
 
   # Automatic Upgrades
   system.autoUpgrade.enable = true;
@@ -173,7 +193,8 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "22.05"; # Did you read the comment?
+  system.stateVersion = "22.11"; # Did you read the comment?
 
 }
+
 

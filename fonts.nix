@@ -15,6 +15,9 @@
       open-fonts
       roboto
       ubuntu_font_family
+      ibm-plex
+      google-fonts
+      noto-fonts
     ];
     fontconfig = {
       cache32Bit = true;
@@ -26,3 +29,4 @@
     };
   };
 }
+
