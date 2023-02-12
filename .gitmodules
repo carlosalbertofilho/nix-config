@@ -1,0 +1,3 @@
+[submodule "dotfile/doom.d"]
+	path = dotfile/doom.d
+	url = git@github.com:carlosalbertofilho/doom.d.git
