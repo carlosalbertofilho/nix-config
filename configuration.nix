@@ -77,7 +77,7 @@
      google-chrome
      tdesktop
      kate
-     latte-dock 
+     exa 
      spotify
      libreoffice-qt
      libsForQt5.akonadi
@@ -106,16 +106,18 @@
      archivemount
      glxinfo
      pciutils
-     hplip
      gitFull
      neovim
      emacs
+     fzf fzf-zsh
+     ripgrep 
      pass
      qtpass
      gnupg
      kgpg
      pinentry-qt
      pass-git-helper
+     aspell aspellDicts.pt_BR ispell
     ];
 
   # Some programs need SUID wrappers, can be configured further or are

@@ -18,6 +18,7 @@
       ibm-plex
       google-fonts
       noto-fonts
+      liberation_ttf
     ];
     fontconfig = {
       cache32Bit = true;
