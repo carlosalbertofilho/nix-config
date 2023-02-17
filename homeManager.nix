@@ -24,15 +24,13 @@ in
     /* Here goes your home-manager config, eg  */
     home.stateVersion = "22.11";
     home.packages = with pkgs; [
-      firefox  thunderbird  keepassxc  neofetch
-      zoom-us  discord doom-emacs emacsPackages.all-the-icons
-      aspellDicts.en aspellDicts.pt_BR aspellDicts.en-science
-      aspellDicts.en-computers
+      firefox  thunderbird  keepassxc  neofetch zoom-us  discord doom-emacs emacsPackages.all-the-icons
+      aspellDicts.en aspellDicts.pt_BR aspellDicts.en-science  aspellDicts.en-computers
     ];
 
     programs.git = {
       enable = true;
-      userName  = "carlosalbertofilho";
+      userName  = "carlosalberto_filho";
       userEmail = "carlosalberto_filho@outlook.com";
     };
 
@@ -50,7 +48,7 @@ in
       };
       history = {
       	size = 10000;
-    	  path = "${home-directory}/zsh/history";
+    	  path = "${home-directory}/.zsh/history";
       };
       zplug = {
         enable = true;

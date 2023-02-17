@@ -7,195 +7,198 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./grub.nix ./hardware-configuration.nix ./fonts.nix
-      ./flakeModule.nix ./homeManager.nix
+    ./grub.nix ./hardware-configuration.nix ./fonts.nix
+    ./flakeModule.nix ./homeManager.nix
     ];
 
 
-  networking.hostName = "helena"; # Define your hostname.
-  # Pick only one of the below networking options.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
-  networking.enableB43Firmware = true;
+    networking.hostName = "helena"; # Define your hostname.
+    # Pick only one of the below networking options.
+    # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+    networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+    networking.enableB43Firmware = true;
 
-  # Set your time zone.
-  time.timeZone = "America/Sao_Paulo";
+    # Set your time zone.
+    time.timeZone = "America/Sao_Paulo";
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+    # Configure network proxy if necessary
+    # networking.proxy.default = "http://user:password@proxy:port/";
+    # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # Select internationalisation properties.
-   i18n.defaultLocale = "pt_BR.UTF-8";
-   console = {
-     font = "Lat2-Terminus16";
-     keyMap = "br-abnt2";
-     # useXkbConfig = true; # use xkbOptions in tty.
-   };
+    # Select internationalisation properties.
+    i18n.defaultLocale = "pt_BR.UTF-8";
+    console = {
+      font = "Lat2-Terminus16";
+      keyMap = "br-abnt2";
+      # useXkbConfig = true; # use xkbOptions in tty.
+    };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.xserver.layout = "br";
-  services.xserver.libinput.enable = true;
+    # Enable the X11 windowing system.
+    services.xserver.enable = true;
+    services.xserver.layout = "br";
+    services.xserver.libinput.enable = true;
 
-  # Enable the Plasma 5 Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
-
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-  services.printing.drivers = [ pkgs.hplip ];
-  
-  #Scanner
-  hardware.sane.enable = true;
-  hardware.sane.extraBackends = [ pkgs.hplipWithPlugin ];
-
-  #GVFS
-  services.gvfs.enable = true;
-
-  # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
+    # Enable the Plasma 5 Desktop Environment.
+    services.xserver.displayManager.sddm.enable = true;
+    services.xserver.desktopManager.plasma5.enable = true;
 
 
-  # Enable unfree packages
-  nixpkgs.config.allowUnfree = true; 
-  
-  users.users.carlosfilho = {
-     isNormalUser = true;
-     extraGroups = [ 
+    # Enable CUPS to print documents.
+    services.printing.enable = true;
+    services.printing.drivers = [ pkgs.hplip ];
+
+    #Scanner
+    hardware.sane.enable = true;
+    hardware.sane.extraBackends = [ pkgs.hplipWithPlugin ];
+
+    #GVFS
+    services.gvfs.enable = true;
+
+    # Enable sound.
+    sound.enable = true;
+    hardware.pulseaudio.enable = true;
+
+
+    # Enable unfree packages
+    nixpkgs.config.allowUnfree = true;
+
+    users.users.carlosfilho = {
+      isNormalUser = true;
+      extraGroups = [
       "wheel" "docker" "networkmanager" "messagebus"
       "systemd-journal" "disk" "audio" "video" "lp"  ];
-   };
+    };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-   environment.systemPackages = with pkgs; [
-     vim 
-     wget
-     google-chrome
-     tdesktop
-     kate
-     exa 
-     spotify
-     libreoffice-qt
-     libsForQt5.akonadi
-     libsForQt5.akonadi-notes
-     libsForQt5.akonadi-mime
-     libsForQt5.akonadi-search
-     libsForQt5.akonadi-contacts
-     libsForQt5.akonadi-calendar
-     libsForQt5.akonadi-import-wizard
-     libsForQt5.akonadiconsole
-     libsForQt5.korganizer
-     libsForQt5.kdenlive
-     libsForQt5.ksshaskpass
-     libsForQt5.sddm-kcm
-     libsForQt5.kconfig
-     libsForQt5.kconfigwidgets
-     libsForQt5.dolphin-plugins
-     libsForQt5.kdeplasma-addons
-     libsForQt5.print-manager
-     kwalletcli
-     ffmpeg
-     gimp
-     wget
-     zip unzip ark
-     ripgrep-all
-     archivemount
-     glxinfo
-     pciutils
-     gitFull
-     neovim
-     emacs
-     fzf fzf-zsh
-     ripgrep 
-     pass
-     qtpass
-     gnupg
-     kgpg
-     pinentry-qt
-     pass-git-helper
-     aspell aspellDicts.pt_BR ispell
+    # List packages installed in system profile. To search, run:
+    # $ nix search wget
+    environment.systemPackages = with pkgs; [
+      anydesk
+      archivemount
+      aspell aspellDicts.pt_BR ispell
+      emacs
+      exa
+      ffmpeg
+      fzf fzf-zsh
+      gimp
+      gitFull
+      glxinfo
+      gnupg
+      google-chrome
+      kate
+      kgpg
+      kwalletcli
+      libreoffice-qt
+      libsForQt5.akonadi
+      libsForQt5.akonadi-calendar
+      libsForQt5.akonadi-contacts
+      libsForQt5.akonadi-import-wizard
+      libsForQt5.akonadi-mime
+      libsForQt5.akonadi-notes
+      libsForQt5.akonadi-search
+      libsForQt5.akonadiconsole
+      libsForQt5.dolphin-plugins
+      libsForQt5.kconfig
+      libsForQt5.kconfigwidgets
+      libsForQt5.kdenlive
+      libsForQt5.kdeplasma-addons
+      libsForQt5.korganizer
+      libsForQt5.ksshaskpass
+      libsForQt5.print-manager
+      libsForQt5.sddm-kcm
+      neovim
+      pass
+      pass-git-helper
+      pciutils
+      pinentry-qt
+      qtpass
+      ripgrep
+      ripgrep-all
+      spotify
+      tdesktop
+      wget
+      zip unzip ark
+      vim
     ];
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  programs.dconf.enable = true;
+    # Some programs need SUID wrappers, can be configured further or are
+    # started in user sessions.
+    programs.dconf.enable = true;
 
-  programs.mtr.enable = true;
+    programs.mtr.enable = true;
 
-  programs.gnupg.agent = {
-     enable = true;
-     enableSSHSupport = true;
-     pinentryFlavor = "qt";
-   };
+    programs.gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+      pinentryFlavor = "qt";
+    };
 
-  programs.ssh.askPassword = "/run/current-system/sw/bin/ksshaskpass";
+    programs.ssh.askPassword = "/run/current-system/sw/bin/ksshaskpass";
 
-  # LAN discovery.
-  services.avahi = {
-    enable = true;
-    nssmdns = true;
-  };
+    # LAN discovery.
+    services.avahi = {
+      enable = true;
+      nssmdns = true;
+    };
 
-  # List services that you want to enable:
+    # List services that you want to enable:
 
-  # Syslog-ng enable
-  services.syslog-ng.enable = true;
+    # Syslog-ng enable
+    services.syslog-ng.enable = true;
 
-  # Enable zsh for all user
-  programs.zsh.enable = true;
-  users.defaultUserShell = pkgs.zsh;
-  environment.shells = with pkgs; [ zsh ];
+    # Enable Emacs Service
+    # programs.emacs.enable = true;
 
-  # Bluetooth.
-  hardware.bluetooth.enable = true;
-  services.blueman.enable = true;
+    # Enable zsh for all user
+    programs.zsh.enable = true;
+    users.defaultUserShell = pkgs.zsh;
+    environment.shells = with pkgs; [ zsh ];
 
-  # Locate Server
-  services.locate.enable = true;
+    # Bluetooth.
+    hardware.bluetooth.enable = true;
+    services.blueman.enable = true;
 
-  # fan controller daemon for Apple Macs and MacBooks.
-  services.mbpfan.enable = true;
+    # Locate Server
+    services.locate.enable = true;
 
-  # Docker
-  virtualisation.docker.enable = true;
-  virtualisation.docker.enableOnBoot = true;
+    # fan controller daemon for Apple Macs and MacBooks.
+    services.mbpfan.enable = true;
 
-  # Config kwallet
-  security.pam.services.kwallet = {
-    name = "kwallet";
-    enableKwallet = true;
-  };
+    # Docker
+    virtualisation.docker.enable = true;
+    virtualisation.docker.enableOnBoot = true;
 
-  # Automatic Upgrades
-  system.autoUpgrade.enable = true;
-  system.autoUpgrade.allowReboot = true;
+    # Config kwallet
+    security.pam.services.kwallet = {
+      name = "kwallet";
+      enableKwallet = true;
+    };
+
+    # Automatic Upgrades
+    system.autoUpgrade.enable = true;
+    system.autoUpgrade.allowReboot = true;
 
 
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+    # Enable the OpenSSH daemon.
+    # services.openssh.enable = true;
 
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-   networking.firewall.enable = true;
+    # Open ports in the firewall.
+    # networking.firewall.allowedTCPPorts = [ ... ];
+    # networking.firewall.allowedUDPPorts = [ ... ];
+    # Or disable the firewall altogether.
+    networking.firewall.enable = true;
 
-  # Copy the NixOS configuration file and link it from the resulting system
-  # (/run/current-system/configuration.nix). This is useful in case you
-  # accidentally delete configuration.nix.
-  # system.copySystemConfiguration = true;
+    # Copy the NixOS configuration file and link it from the resulting system
+    # (/run/current-system/configuration.nix). This is useful in case you
+    # accidentally delete configuration.nix.
+    # system.copySystemConfiguration = true;
 
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "22.11"; # Did you read the comment?
+    # This value determines the NixOS release from which the default
+    # settings for stateful data, like file locations and database versions
+    # on your system were taken. It‘s perfectly fine and recommended to leave
+    # this value at the release version of the first install of this system.
+    # Before changing this value read the documentation for this option
+    # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+    system.stateVersion = "22.11"; # Did you read the comment?
 
 }
 

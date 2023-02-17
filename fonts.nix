@@ -3,22 +3,30 @@
   fonts = {
     enableDefaultFonts = true; # Those fonts you expect every distro to have.
     fonts = with pkgs; [
-      borg-sans-mono
+      bakoma_ttf
       cantarell-fonts
+      corefonts
+      dejavu_fonts
       fira
       fira-code
       fira-code-symbols
       font-awesome_4
       font-awesome_5
+      gentium
+      google-fonts
+      ibm-plex
+      inconsolata
+      liberation_ttf
+      nerdfonts
       noto-fonts
       noto-fonts-cjk
       open-fonts
+      powerline-fonts
       roboto
+      terminus_font
       ubuntu_font_family
-      ibm-plex
-      google-fonts
-      noto-fonts
-      liberation_ttf
+      borg-sans-mono
+
     ];
     fontconfig = {
       cache32Bit = true;
