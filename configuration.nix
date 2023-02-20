@@ -75,6 +75,7 @@
       anydesk
       archivemount
       aspell aspellDicts.pt_BR ispell
+      brave
       emacs
       exa
       ffmpeg
@@ -106,6 +107,7 @@
       libsForQt5.print-manager
       libsForQt5.sddm-kcm
       neovim
+      opera
       pass
       pass-git-helper
       pciutils
@@ -115,9 +117,11 @@
       ripgrep-all
       spotify
       tdesktop
+      vim
+      vivaldi
+      vivaldi-ffmpeg-codecs
       wget
       zip unzip ark
-      vim
     ];
 
     # Some programs need SUID wrappers, can be configured further or are
