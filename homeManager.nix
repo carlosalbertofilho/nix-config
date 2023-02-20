@@ -68,5 +68,7 @@ in
     '';
 
     home.file.".gnupg/gpg.conf".source = ./dotfile/gnupg/gpg.conf;
+    home.file.".xsessionrc".source = ./dotfile/xsessionrc;
+    home.file.".ssh/config".source = ./dotfile/ssh/config;
   };
 }

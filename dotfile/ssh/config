@@ -1,0 +1,18 @@
+Host *
+  ForwardX11 yes
+  ForwardX11Trusted yes
+
+# GitHub
+Host github.com
+  PreferredAuthentications publickey
+  IdentityFile ~/.ssh/github
+
+# GitLab.com
+Host gitlab.com
+  PreferredAuthentications publickey
+  IdentityFile ~/.ssh/gitlab
+
+# Private GitLab instance
+Host gitlab.ctd.academy
+  PreferredAuthentications publickey
+  IdentityFile ~/.ssh/gitlab

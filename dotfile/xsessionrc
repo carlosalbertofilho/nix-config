@@ -1,0 +1,4 @@
+# Start Emacs server
+if [ -n "$DISPLAY" ] && [ -z "$(pgrep emacs)" ]; then
+    emacs --daemon
+fi
