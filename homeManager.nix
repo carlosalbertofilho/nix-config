@@ -25,7 +25,7 @@ in
     home.stateVersion = "22.11";
     home.packages = with pkgs; [
       firefox  thunderbird  keepassxc  neofetch zoom-us  discord doom-emacs emacsPackages.all-the-icons
-      aspellDicts.en aspellDicts.pt_BR aspellDicts.en-science  aspellDicts.en-computers
+      aspellDicts.en aspellDicts.pt_BR aspellDicts.en-science  aspellDicts.en-computers postman
     ];
 
     programs.git = {
