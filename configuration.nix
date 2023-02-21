@@ -167,9 +167,6 @@
     # Locate Server
     services.locate.enable = true;
 
-    # fan controller daemon for Apple Macs and MacBooks.
-    services.mbpfan.enable = true;
-
     # Docker
     virtualisation.docker.enable = true;
     virtualisation.docker.enableOnBoot = true;
