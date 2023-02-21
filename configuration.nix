@@ -76,7 +76,6 @@
       archivemount
       aspell aspellDicts.pt_BR ispell
       brave
-      opera
       emacs
       exa
       ffmpeg
@@ -89,6 +88,7 @@
       kate
       kgpg
       kwalletcli
+      lbry
       libreoffice-qt
       libsForQt5.akonadi
       libsForQt5.akonadi-calendar
@@ -108,19 +108,23 @@
       libsForQt5.print-manager
       libsForQt5.sddm-kcm
       neovim
+      opera
       pass
       pass-git-helper
       pciutils
       pinentry-qt
       plymouth
       qtpass
+      remmina
       ripgrep
       ripgrep-all
       spotify
       tdesktop
+      vim
+      vivaldi
+      vivaldi-ffmpeg-codecs
       wget
       zip unzip ark
-      vim
     ];
 
     # Some programs need SUID wrappers, can be configured further or are
