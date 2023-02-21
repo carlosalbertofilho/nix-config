@@ -7,12 +7,12 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-    ./grub.nix ./hardware-configuration.nix ./fonts.nix
+    ./hardware-configuration.nix ./fonts.nix
     ./flakeModule.nix ./homeManager.nix
     ];
 
 
-    networking.hostName = "helena"; # Define your hostname.
+    networking.hostName = "aa102-006l"; # Define your hostname.
     # Pick only one of the below networking options.
     # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
     networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
@@ -76,6 +76,7 @@
       archivemount
       aspell aspellDicts.pt_BR ispell
       brave
+      opera
       emacs
       exa
       ffmpeg
@@ -107,21 +108,19 @@
       libsForQt5.print-manager
       libsForQt5.sddm-kcm
       neovim
-      opera
       pass
       pass-git-helper
       pciutils
       pinentry-qt
+      plymouth
       qtpass
       ripgrep
       ripgrep-all
       spotify
       tdesktop
-      vim
-      vivaldi
-      vivaldi-ffmpeg-codecs
       wget
       zip unzip ark
+      vim
     ];
 
     # Some programs need SUID wrappers, can be configured further or are

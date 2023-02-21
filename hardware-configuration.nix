@@ -8,44 +8,61 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  hardware.enableAllFirmware = true;
-
-  boot.initrd.availableKernelModules = [ "uhci_hcd" "ehci_pci" "ahci" "firewire_ohci" "usbhid" "usb_storage" "sd_mod" "sdhci_pci" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "uas" "sd_mod" "sr_mod" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" "wl" ];
-  boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
+  boot.kernelModules = [ "kvm-intel" ];
+  boot.extraModulePackages = [ ];
+
+  # Grub config
+  boot.loader.grub.enable = true;
+  boot.loader.grub.version = 2;
+  boot.loader.grub.efiSupport = true;
+  boot.loader.grub.efiInstallAsRemovable = true;
+  boot.loader.grub.device = "nodev";
+  # boot.loader.grub.device = "/dev/disk/by-id/usb-JMicron_Tech_DD201909040039-0:0";
+
+  # EFI
+  # boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = false;
+  boot.loader.efi.efiSysMountPoint = "/boot/efi";
+
+  # Plymouth boot splash screen
+  boot.plymouth.enable = true;
+  boot.plymouth.themePackages = with pkgs; [ libsForQt5.breeze-plymouth ];
+  boot.plymouth.theme = "breeze";
+
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/4a6cab96-7eff-4326-8d71-02bccb54fb11";
+    { device = "/dev/disk/by-uuid/d63e5823-45e4-40b4-93d7-57dd35c75e8c";
       fsType = "btrfs";
       options = [ "subvol=@" "compress=lzo" "noatime" ];
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/BD88-E40C";
+    { device = "/dev/disk/by-uuid/d63e5823-45e4-40b4-93d7-57dd35c75e8c";
+      fsType = "btrfs";
+      options = [ "subvol=@boot" "compress=lzo" "noatime" ];
+    };
+
+  fileSystems."/boot/efi" =
+    { device = "/dev/disk/by-uuid/3874-9AD5";
       fsType = "vfat";
     };
 
   fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/4a6cab96-7eff-4326-8d71-02bccb54fb11";
+    { device = "/dev/disk/by-uuid/d63e5823-45e4-40b4-93d7-57dd35c75e8c";
       fsType = "btrfs";
       options = [ "subvol=@home" "compress=lzo" "noatime" ];
     };
 
   fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/4a6cab96-7eff-4326-8d71-02bccb54fb11";
+    { device = "/dev/disk/by-uuid/d63e5823-45e4-40b4-93d7-57dd35c75e8c";
       fsType = "btrfs";
       options = [ "subvol=@nix" "compress=lzo" "noatime" ];
     };
 
-  fileSystems."/home/carlosfilho" =
-    { device = "/dev/disk/by-uuid/4a6cab96-7eff-4326-8d71-02bccb54fb11";
-      fsType = "btrfs";
-      options = [ "subvol=@carlosfilho" "compress=lzo" "noatime" ];
-    };
-
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/9fcd5c51-4026-4fe7-aaf4-497f1206b67f"; }
+    [ { device = "/dev/disk/by-uuid/0792a4ca-f953-40d3-9933-97f7b0b41401"; }
     ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
@@ -53,8 +70,10 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp2s0f0.useDHCP = lib.mkDefault true;
+  # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
+  # networking.interfaces.wlp3s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
