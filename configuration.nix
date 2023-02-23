@@ -108,6 +108,7 @@
       libsForQt5.sddm-kcm
       neovim
       opera
+      postman
       pass
       pass-git-helper
       pciutils
