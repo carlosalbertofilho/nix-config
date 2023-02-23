@@ -32,6 +32,8 @@ in
       enable = true;
       userName  = "carlosalberto_filho";
       userEmail = "carlosalberto_filho@outlook.com";
+      signing.key = "71D78F6E8C7170B2";
+
     };
 
     programs.zsh = {
@@ -62,6 +64,7 @@ in
     	  theme = "darkblood";
       };
     };
+
 
     home.file.".emacs.d/init.el".text = ''
       (load "default.el")
