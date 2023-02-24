@@ -7,7 +7,7 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-    ./grub.nix ./hardware-configuration.nix ./fonts.nix
+    ./hardware-configuration.nix ./fonts.nix
     ./flakeModule.nix ./homeManager.nix
     ];
 
@@ -113,6 +113,7 @@
       pass-git-helper
       pciutils
       pinentry-qt
+      plymouth
       qtpass
       ripgrep
       ripgrep-all

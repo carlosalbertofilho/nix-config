@@ -32,6 +32,8 @@ in
       enable = true;
       userName  = "carlosalberto_filho";
       userEmail = "carlosalberto_filho@outlook.com";
+      signing.key = "71D78F6E8C7170B2";
+      signing.signByDefault = true;
     };
 
     programs.zsh = {
