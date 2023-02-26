@@ -69,6 +69,7 @@
       "systemd-journal" "disk" "audio" "video" "lp"  ];
     };
 
+
     # List packages installed in system profile. To search, run:
     # $ nix search wget
     environment.systemPackages = with pkgs; [
@@ -125,6 +126,7 @@
       vivaldi-ffmpeg-codecs
       wget
       zip unzip ark
+
     ];
 
     # Some programs need SUID wrappers, can be configured further or are
