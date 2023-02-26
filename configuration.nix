@@ -106,6 +106,8 @@
       libsForQt5.ksshaskpass
       libsForQt5.print-manager
       libsForQt5.sddm-kcm
+      libsForQt5.kio-gdrive
+      libsForQt5.umbrello
       neovim
       opera
       postman
