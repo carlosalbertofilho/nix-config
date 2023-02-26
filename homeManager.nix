@@ -25,13 +25,15 @@ in
     home.stateVersion = "22.11";
     home.packages = with pkgs; [
       firefox  thunderbird  keepassxc  neofetch zoom-us  discord doom-emacs emacsPackages.all-the-icons
-      aspellDicts.en aspellDicts.pt_BR aspellDicts.en-science  aspellDicts.en-computers
+      aspellDicts.en aspellDicts.pt_BR aspellDicts.en-science  aspellDicts.en-computers dbeaver
     ];
 
     programs.git = {
       enable = true;
       userName  = "carlosalberto_filho";
       userEmail = "carlosalberto_filho@outlook.com";
+      signing.key = "71D78F6E8C7170B2";
+      signing.signByDefault = true;
     };
 
     programs.zsh = {

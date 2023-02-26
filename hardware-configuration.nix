@@ -9,11 +9,38 @@
     ];
 
   hardware.enableAllFirmware = true;
-
   boot.initrd.availableKernelModules = [ "uhci_hcd" "ehci_pci" "ahci" "firewire_ohci" "usbhid" "usb_storage" "sd_mod" "sdhci_pci" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" "wl" ];
   boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
+
+  # Grub config
+  boot.loader.grub.enable = true;
+  boot.loader.grub.version = 2;
+  boot.loader.grub.efiSupport = true;
+  boot.loader.grub.device = "nodev";
+
+  # EFI
+  # boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.efi.efiSysMountPoint = "/boot";
+
+  # Plymouth boot splash screen
+  boot.plymouth.enable = true;
+  boot.plymouth.themePackages = with pkgs; [ libsForQt5.breeze-plymouth ];
+  boot.plymouth.theme = "breeze";
+
+  # Intel GPU Hardware-accelerated
+  hardware.opengl = {
+    enable = true;
+    extraPackages = with pkgs; [
+      vaapiIntel
+      vaapiVdpau
+      libvdpau-va-gl
+      intel-ocl
+    ];
+    driSupport = true;
+  };
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/4a6cab96-7eff-4326-8d71-02bccb54fb11";
