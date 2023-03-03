@@ -65,7 +65,7 @@
     users.users.carlosfilho = {
       isNormalUser = true;
       extraGroups = [
-      "wheel" "docker" "networkmanager" "messagebus"
+      "wheel" "docker" "networkmanager" "messagebus" "libvirt"
       "systemd-journal" "disk" "audio" "video" "lp"  ];
     };
 
@@ -108,6 +108,8 @@
       libsForQt5.ksshaskpass
       libsForQt5.print-manager
       libsForQt5.sddm-kcm
+      libvirt
+      virt-manager
       neovim
       opera
       pass
@@ -115,6 +117,7 @@
       pciutils
       pinentry-qt
       plymouth
+      persistent-evdev
       qtpass
       remmina
       ripgrep
@@ -173,6 +176,17 @@
     virtualisation.docker.enable = true;
     virtualisation.docker.enableOnBoot = true;
 
+    # spice
+    virtualisation.spiceUSBRedirection.enable = true;
+
+    # Enable LibVirt
+    virtualisation.libvirtd = {
+      enable = true;
+      qemu.swtpm.enable = true;
+      onBoot = "start";
+      onShutdown = "suspend";
+    };
+
     # Config kwallet
     security.pam.services.kwallet = {
       name = "kwallet";
@@ -182,7 +196,6 @@
     # Automatic Upgrades
     system.autoUpgrade.enable = true;
     system.autoUpgrade.allowReboot = true;
-
 
     # Enable the OpenSSH daemon.
     # services.openssh.enable = true;
