@@ -76,6 +76,7 @@
       archivemount
       aspell aspellDicts.pt_BR ispell
       brave
+      calligra
       emacs
       exa
       ffmpeg
